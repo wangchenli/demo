@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.wrap{
+				width: 1000px;
+				height: 700px;
+				background: url(images/bg.png);
+				margin: auto;
+				position: relative;
+			}
+			.wrap input{
+				width: 150px;
+				height: 40px;
+				border: 1px solid #4f497e;
+				border-radius: 25px;
+				background: #c4c2de;
+				position: absolute;
+				top: 137px;
+				color: #332d52;
+				font: 16px "微软雅黑";
+			}
+			.btn1{
+				left: 314px;
+			}
+			.wrap .active{
+				background: #332d52;
+				color: #FFFFFF;
+				border: 1px solid #c4c2de;
+			}
+			.btn2{
+				left: 524px;
+			}
+			.box{
+				width: 781px;
+				height: 387px;
+				position: absolute;
+				top: 237px;
+				left: 104px;
+			}
+			.box div{
+				width: 150px;
+				height: 163px;
+				position: absolute;
+			}
+			.box1,.box2,.box3,.box4{
+				top: 0;
+			}
+			.box5,.box6,.box7,.box8{
+				bottom: 0;
+			}
+			.box1,.box5{
+				left: 0;
+			}
+			.box2,.box6{
+				left: 211px;
+			}
+			.box3,.box7{
+				left: 421px;
+			}
+			.box4,.box8{
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<input type="button" value="从小到大" class="btn1 active"/>
+			<input type="button" value="打乱顺序" class="btn2"/>
+			<div class="box">
+				<div class="box1"><img src="images/1.png"/></div>
+				<div class="box2"><img src="images/2.png"/></div>
+				<div class="box3"><img src="images/3.png"/></div>
+				<div class="box4"><img src="images/4.png"/></div>
+				<div class="box5"><img src="images/5.png"/></div>
+				<div class="box6"><img src="images/6.png"/></div>
+				<div class="box7"><img src="images/7.png"/></div>
+				<div class="box8"><img src="images/8.png"/></div>
+			</div>
+		</div>
+		<script src="utils.js"></script>
+		<script>
+			var btn1 = $('.btn1')[0];
+			var btn2 = $('.btn2')[0];
+			var boxs = $('.box div');
+			var arr = ['<img src="images/1.png"/>','<img src="images/2.png"/>','<img src="images/3.png"/>','<img src="images/4.png"/>','<img src="images/5.png"/>','<img src="images/6.png"/>','<img src="images/7.png"/>','<img src="images/8.png"/>']
+			var newArr = [1,2,3,4,5,6,7,8]
+			btn1.onclick = function(){
+				btn1.style.cssText = 'background: #332d52;color: #FFFFFF;border: 1px solid #c4c2de;'
+				btn2.style.cssText = 'border: 1px solid #4f497e;border-radius: 25px;background: #c4c2de;'
+				var aa = newArr.sort(function(a,b){
+					return a - b
+				})
+				for(var i=0;i<boxs.length;i++){
+					boxs[i].innerHTML += `<div class="box1"><img src="images/${aa[i]}.png"/></div>`
+				}
+			}
+			btn2.onclick = function(){
+				btn1.style.cssText = 'border: 1px solid #4f497e;border-radius: 25px;background: #c4c2de;color: #332d52;'
+				btn2.style.cssText = 'background: #332d52;color: #FFFFFF;border: 1px solid #c4c2de;'
+				var bb = arr.sort(function(c,d){
+					return Math.random() - 0.5
+				})
+				for(var i=0;i<boxs.length;i++){
+					boxs[i].innerHTML = bb[i]
+				}
+			}
+		</script>
+	</body>
+</html>

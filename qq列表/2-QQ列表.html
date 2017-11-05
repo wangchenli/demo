@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li,
+			h2 {
+				margin: 0;
+				padding: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="qq.css" />
+	</head>
+
+	<body onselectstart="return false;">
+		<div class="wrap">
+			<div class="list">
+				<h2><span></span>我的好友</h2>
+				<ul>
+					
+					<li>小佳Love</li>
+					<li>从来就是这么正经</li>
+					<li>leo是个胖子</li>
+					<li>momo不是陌陌</li>
+				</ul>
+				<h2><span></span>企业好友</h2>
+				<ul>
+					<li>习近平</li>
+					<li>普京</li>
+					<li>奥巴马</li>
+				</ul>
+				<h2><span></span>黑名单</h2>
+				<ul>
+					<li>安倍</li>
+					<li>杜特尔特</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			var h2s = document.querySelectorAll('h2');
+			var uls = document.querySelectorAll('.list ul');
+			var prevIndex = 0;
+			for(var i=0;i<h2s.length;i++){
+				h2s[i].index = i;
+				h2s[i].display = 'none';//默认没被点击；
+				h2s[i].onclick = function(){
+					if(prevIndex != this.index){
+						h2s[prevIndex].style.background = '';
+						uls[prevIndex].style.display = 'none';
+						h2s[prevIndex].display = 'none';
+					}
+					if(this.display == 'none'){
+						this.style.background = 'pink';
+						uls[this.index].style.display = 'block';
+						this.display = 'block';
+					}else{
+						this.style.background = '';
+						uls[this.index].style.display = 'none';
+						this.display = 'none';
+					}
+					prevIndex = this.index;
+				}
+			}
+			var flagIndex = 0;
+			var lis = document.querySelectorAll('.list li');
+			for(var i=0;i<lis.length;i++){
+				lis[i].index = i;
+				lis[i].isClick = false;//默认没被点击；
+				lis[i].onmouseover = function(){
+					if(this.isClick){
+						
+					}else{
+						this.style.background = 'yellow';
+					}
+				}
+				lis[i].onmouseout = function(){
+					if(this.isClick){
+						
+					}else{
+						this.style.background = '';
+					}
+				}
+				lis[i].onclick = function(){
+					
+					lis[flagIndex].style.background = '';
+					lis[flagIndex].isClick = false;
+					this.isClick = true;
+					this.style.background = 'red';
+					flagIndex = this.index;
+				}
+			}
+		</script>
+	</body>
+
+</html>

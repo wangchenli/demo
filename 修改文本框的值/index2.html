@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			p {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.wrap {
+				width: 764px;
+				height: 800px;
+				margin: 0 auto;
+				display: flex;
+				background: url(bg.png) no-repeat center center;
+			}
+			
+			.text {
+				width: 442px;
+				height: 242px;
+				margin: 100px auto 0;
+				background: url(bg1.png) no-repeat center center;
+				box-sizing: border-box;
+				padding-top: 76px;
+				border-radius: 3px;
+			}
+			
+			.text_i {
+				width: 100%;
+				height: 79px;
+			}
+			
+			.text .text_i:nth-of-type(1){
+				border-bottom: 1px dashed #ccc;
+			}
+			
+			.text_i .show {
+				width: 100%;
+				height: 100%;
+				position: relative;
+				padding-left: 28px;
+				box-sizing: border-box;
+			}
+			
+			.text_i .show .info {
+				float: left;
+				height: 100%;
+				font: 16px/79px "微软雅黑";
+				color: #fff;
+				margin-right: 22px;
+			}
+			
+			.text_i .show .btn {
+				float: left;
+				width: 24px;
+				height: 24px;
+				background: url(c.png) no-repeat center center;
+				margin: 29px 0 0 0;
+			}
+			
+			.text_i .alter {
+				display: none;
+				width: 100%;
+				height: 100%;
+				padding-left: 24px;
+				padding-top: 22px;
+				box-sizing: border-box;
+			}
+			
+			.text_i .alter input[type=text] {
+				display: inline-block;
+				width: 248px;
+				height: 32px;
+				border: 1px solid #e15671;
+				margin-right: 6px;
+				outline: none;
+			}
+			
+			.text_i .alter .sure,
+			.text_i .alter .cancel {
+				display: inline-block;
+				width: 60px;
+				height: 36px;
+				background: #E15671;
+				border-radius: 3px;
+				font: 14px/36px "微软雅黑";
+				text-align: center;
+				color: #fff;
+				margin-right: 6px;
+				position: relative;
+				top: 1px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="text">
+				<div class="text_i">
+					<div class="show">
+						<p class="info">欢迎来到妙味课堂</p>
+						<a href="javascript:;" class="btn"></a>
+					</div>
+					<div class="alter">
+						<input type="text" value="欢迎来到妙味课堂"/>
+						<span class="sure">确定</span>
+						<span class="cancel">取消</span>
+					</div>
+				</div>
+				<div class="text_i">
+					<div class="show">
+						<p class="info">欢迎来到妙味课堂</p>
+						<a href="javascript:;" class="btn"></a>
+					</div>
+					<div class="alter">
+						<input type="text" value="欢迎来到妙味课堂"/>
+						<span class="sure">确定</span>
+						<span class="cancel">取消</span>
+					</div> 
+				</div>
+			</div>
+		</div>
+		<script>
+			//获取元素：
+			var text_i1 = document.querySelector('.text_i:nth-of-type(1)');
+			var text_i2 = document.querySelector('.text_i:nth-of-type(2)');
+			func(text_i1);//实参
+			func(text_i2);//实参
+			function func(aaa){//形参
+				var shows = aaa.querySelector('.show');
+				var infos = aaa.querySelector('.info');
+				var btns = aaa.querySelector('.btn');
+				var alters = aaa.querySelector('.alter');
+				var inputs = aaa.querySelector('input');
+				var sure = aaa.querySelector('.sure');
+				var cancel = aaa.querySelector('.cancel');
+				btns.onclick = function(){
+					shows.style.display = 'none'; //show消失
+					alters.style.display = 'block'; //alter出现
+					inputs.select(); //有字时默认选中
+				}
+				sure.onclick = function(){
+					alters.style.display = 'none';//alter消失
+					shows.style.display = 'block';//show出现
+					infos.innerHTML = inputs.value; //input的value赋值到info中
+					if(inputs.value == ''){//如果input的value值为空。info恢复原来的内容；
+						infos.innerHTML = '欢迎来到妙味课堂';
+					}
+				}
+				cancel.onclick = function(){//点击取消alter消失,show出现
+					alters.style.display = 'none'; 
+					shows.style.display = 'block';
+				}
+			}
+		</script>
+		<!--<script>
+			var shows = document.querySelectorAll('.show');
+			var infos = document.querySelectorAll('.show .info');
+			var btns = document.querySelectorAll('.btn');
+			var alters = document.querySelectorAll('.alter');
+			var inputs = document.querySelectorAll('.alter input');
+			var sure = document.querySelectorAll('.alter .sure');
+			var cancel = document.querySelectorAll('.alter .cancel');
+			btns[0].onclick = function(){
+				message.select();
+				shows[0].style.display = 'none';
+				alters[0].style.display = 'block';
+				inputs[0].value = '';
+			}
+			sure[0].onclick = function(){
+				alters[0].style.display = 'none';
+				shows[0].style.display = 'block';
+				infos[0].innerHTML = inputs[0].value;
+				if(inputs[0].value == ''){
+					infos[0].innerHTML = '欢迎来到妙味课堂';
+				}
+			}
+			cancel[0].onclick = function(){
+				alters[0].style.display = 'none';
+				shows[0].style.display = 'block';
+			}
+			
+			
+			btns[1].onclick = function(){
+				message.select();
+				shows[1].style.display = 'none';
+				alters[1].style.display = 'block';
+				inputs[1].value = '';
+			}
+			sure[1].onclick = function(){
+				alters[1].style.display = 'none';
+				shows[1].style.display = 'block';
+				if(inputs[1].value == ''){
+					infos[1].innerHTML = '欢迎来到妙味课堂';
+				}else{
+				 	infos[1].innerHTML = inputs[1].value;
+				}
+			}
+			cancel[1].onclick = function(){
+				alters[1].style.display = 'none';
+				shows[1].style.display = 'block';
+			}
+		</script>-->
+	</body>
+
+</html>

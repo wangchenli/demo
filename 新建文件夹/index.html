@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.wrap{
+				width: 700px;
+				height: 500px;
+				background: url(images/bg.png) no-repeat;
+				margin: auto;
+				position: relative;
+			}
+			.newBtn,.deleteBtn{
+				width: 120px;
+				height: 35px;
+				position: absolute;
+				left: 289px;
+			}
+			.newBtn{
+				background: url(images/newbtn.png);
+				bottom: 102px;
+			}
+			.deleteBtn{
+				background: url(images/deletebtn.png);
+				bottom: 46px;
+			}
+			.box{
+				width: 120px;
+				height: 120px;
+				position: relative;
+				float: left;
+			}
+			.mask{
+				width: 120px;
+				height: 120px;
+				background: #000000;
+				opacity: 0.3;
+				border-radius: 5px;
+				box-sizing: border-box;
+				border: 2px solid #ada5c7;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			.mask input{
+				width: 14px;
+				height: 14px;
+			}
+			.file{
+				position: absolute;
+				left: 26px;
+				top: 27px;
+				width: 80px;
+				height: 80px;
+				background: url(images/file.png) no-repeat;
+				font: 14px/148px "微软雅黑";
+				color: #FFFFFF;
+			}
+			.content{
+				width: 420px;
+				height: 140px;
+				position: absolute;
+				left: 150px;
+				top: 200px;
+			}
+			.content div{
+				float: left;
+				margin-right: 10px;
+			}
+			.clearfix:after{
+				content:"";
+				display:block;
+				clear:both;
+				height:0;
+				overflow:hidden;	
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="content clearfix">
+				<!--<div class="box">
+					<div class="mask">
+						<input type="checkbox" />
+					</div>	
+					<div class="file">新建文件夹</div>
+				</div>-->
+			</div>
+			<span class="newBtn"></span>
+			<span class="deleteBtn"></span>
+		</div>
+		<script src="utils.js"></script>
+		<script>
+			var newBtn = $('.newBtn')[0];
+			var deleteBtn = $('.deleteBtn')[0];
+			var content = $('.content')[0];
+			var arr = [];
+			newBtn.onclick = function(){
+				var newFile = document.createElement('div');
+				
+				newFile.innerHTML = `
+				   	<div class="box">
+						<div class="mask">
+							<input type="checkbox" />
+						</div>	
+						<div class="file">新建文件夹</div>
+					</div>
+				`
+				content.appendChild(newFile)
+				
+				var box = newFile.querySelector('.box');
+				
+				var mask = box.querySelector('.mask');
+				var inputs = box.querySelector('input');
+				arr.push(inputs);
+				box.onmouseover = function(){
+					mask.style.display = 'block';
+				}
+				box.onmouseout = function(){
+					if(!inputs.checked){
+						mask.style.display = 'none';
+					}
+				}
+				deleteBtn.onclick = function(){
+					arr.forEach(function(item){
+						if(item.checked){
+							item.parentNode.parentNode.parentNode.remove();
+						}
+					})
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>

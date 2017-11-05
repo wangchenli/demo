@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#b_box{
+				width: 600px;
+				height: 250px;
+				background: url(images/bg.jpg);
+				padding-top: 50px;
+				margin: auto;
+			}
+			#box{
+				width: 460px;
+				height: 200px;
+				margin: auto;
+			}
+			.box_t{
+				height: 119px;
+				background: #fff;
+				padding-top: 23px;
+			}
+			.top1{
+				height: 31px;
+				padding-left: 109px;
+				margin-bottom: 31px;
+			}
+			.top1 img{
+				float: left;
+			}
+			.top1 span{
+				float: left;
+				font: 18px/31px "微软雅黑";
+			}
+			.box_b{
+				height: 58px;
+				background: #e15671;
+				text-align: center;
+				color: #fff;
+				font: 16px/58px "微软雅黑";
+			}
+			#top2{
+				height: 57px;
+				padding-left: 89px;
+				position: relative;
+			}
+			#top2 span{
+				float: left;
+				width: 30px;
+				height: 30px;
+				background: url(images/star.png);
+				margin-right: 7px;
+			}
+			#btn{
+				position: absolute;
+				bottom: 25px;
+				right: 90px;
+				width: 61px;
+				height: 30px;
+				font: 14px/30px "微软雅黑";
+				background: #e15671;
+				color: #ffffff;
+				text-align: center;
+				border: 0;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="b_box">
+			<div id="box">
+				<div class="box_t">
+					<div class="top1">
+						<img src="images/logo.jpg" />
+						<span>&nbsp;&nbsp;|&nbsp;&nbsp;总体评价</span>
+					</div>
+					<div id="top2">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<input type="button" value="极差" id="btn" />
+					</div>
+				</div>
+				<div class="box_b">
+					小提示：点击星星就能打分
+				</div>
+			</div>
+		</div>
+		<script src="./yanshi.js"></script>
+	</body>
+</html>

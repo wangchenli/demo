@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<section class="wrap">
+	<div class="wrap-left">
+		<ul class="list">
+			<li>
+				<span>jQuery</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up">上移</a>
+					<a href="javascript:;" class="down">下移</a>
+				</div>
+			</li>
+			<li>
+				<span>AJAX</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up">上移</a>
+					<a href="javascript:;" class="down">下移</a>
+				</div>
+			</li>
+			<li>
+				<span>JS基础-2</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up">上移</a>
+					<a href="javascript:;" class="down">下移</a>
+				</div>
+			</li>
+			<li>
+				<span>移动端实战</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up">上移</a>
+					<a href="javascript:;" class="down">下移</a>
+				</div>
+			</li>
+			<li>
+				<span>canvas游戏</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up">上移</a>
+					<a href="javascript:;" class="down">下移</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!--<div class="wrap-right">
+		<ul class="list">
+			<li>
+				<span>jQuery</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up"></a>
+					<a href="javascript:;" class="down"></a>
+				</div>
+			</li>
+			<li>
+				<span>小程序</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up"></a>
+					<a href="javascript:;" class="down"></a>
+				</div>
+			</li>
+			<li>
+				<span>jQuery</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up"></a>
+					<a href="javascript:;" class="down"></a>
+				</div>
+			</li>
+			<li>
+				<span>面向对象-上</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up"></a>
+					<a href="javascript:;" class="down"></a>
+				</div>
+			</li>
+			<li>
+				<span>面向对象-下</span>
+				<div class="btn">
+					<a href="javascript:;"  class="up"></a>
+					<a href="javascript:;" class="down"></a>
+				</div>
+			</li>
+		</ul>
+	</div>-->
+</section>
+<script src="utils.js"></script>
+<script>
+	var downAll = document.getElementsByClassName('down');
+	var upAll = document.getElementsByClassName('up');
+	var list = $('.list')[0];
+	var lis = $('li',list);
+	var arr = Array.from(lis); //把所有的li放在一个数组里
+	for(var i=0;i<downAll.length;i++){
+		downAll[i].onclick = function(){
+			var parent = this.parentNode.parentNode;
+			var n = arr.indexOf(parent); //找到点击的父元素的下标；
+			var m = n+1;  //点击的父元素的下个li；
+			if(m > arr.length-1){
+				m = 0;
+				for(var j=0;j<arr.length;j++){
+					if(j == arr.length-1){
+						mTween(arr[arr.length-1],{top:arr[0].offsetTop},500)
+					}else{
+						mTween(arr[j],{top:arr[j+1].offsetTop},500)
+					}					
+				}
+				var lastOne = arr.pop();
+				arr.unshift(lastOne)
+				return;
+			}
+			var one = arr[n].offsetTop;
+			var two = arr[m].offsetTop;
+			mTween(arr[n],{top:two},500)
+			mTween(arr[m],{top:one},500)
+			arr[n] = [arr[m],arr[m] = arr[n]][0];
+		}
+		upAll[i].onclick = function(){
+			var parent = this.parentNode.parentNode;
+			var n = arr.indexOf(parent); //找到点击的父元素的下标；
+			var m = n-1;  //点击的父元素的上个li；
+			if(m < 0){
+				m = arr.length-1;
+				for(var j=0;j<arr.length;j++){
+					if(j == 0){
+						mTween(arr[0],{top:arr[arr.length-1].offsetTop},500)
+					}else{
+						mTween(arr[j],{top:arr[j-1].offsetTop},500)
+					}					
+				}
+				var firstOne = arr.shift();
+				arr.push(firstOne)
+				return;
+			}
+			var one = arr[n].offsetTop;
+			var two = arr[m].offsetTop;
+			mTween(arr[n],{top:two},500)
+			mTween(arr[m],{top:one},500)
+			arr[n] = [arr[m],arr[m] = arr[n]][0];
+		}
+	}
+
+
+
+
+
+//	Array.from(downAll).forEach(function(item,index){
+//		item.onclick = function(){
+//			var parent = item.parentNode.parentNode;
+//			list.insertBefore(parent.nextElementSibling,parent);
+//			mTween(parent,{
+//				top: parent.offsetHeight + 10
+//			},300)
+//			mTween(parent.nextElementSibling,{
+//				top: -(parent.offsetHeight + 10)
+//			},300)
+//			console.log(index)
+//			
+//		}
+//		
+//	})
+</script>
+</body>
+</html>

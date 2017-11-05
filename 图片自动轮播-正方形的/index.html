@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="index.css" />
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div  class="tagClient">
+					<ul class="list">
+						<li><img src="images/1.png" /></li>
+						<li><img src="images/2.png" /></li>
+					</ul>
+					<span class="next"></span>
+					<span class="prev"></span>
+				</div>
+				<div class="coun">
+					<em class="check"></em>
+					<em></em>
+					<em></em>
+					<em></em>
+				</div>
+			</div>
+		</div>
+		<script src="utils.js"></script>
+		<script>
+			var arr = ["images/1.png","images/2.png","images/3.png","images/4.png"];
+			var tagClient = $('.tagClient')[0];
+			var list = $('.box .list')[0];
+			var lis = $('.list li');
+			var imgs = $('.list li img');
+			var next = $('.next')[0];
+			var prev = $('.prev')[0];
+			var ems = $('.coun em')
+			var n = 0;
+			var prevIndex = 0;
+			function goNext(){
+				n++;
+				if(n > arr.length-1){
+					n = 0;
+				}
+				ems[prevIndex].className = '';
+				ems[n].className = 'check';
+				prevIndex = n;
+				imgs[1].src = arr[n];
+				mTween(list,"left",-420,200,"linear",function(){
+					list.style.left = '0px';
+					imgs[0].src = imgs[1].src;
+				})
+			}
+			next.onclick = goNext;
+			var timer = null;
+			function autoPlay(){
+				timer = setInterval(goNext,1000)
+			}
+			autoPlay();
+			tagClient.onmouseover = function(){
+				clearInterval(timer)
+			}
+			tagClient.onmouseout = function(){
+				autoPlay()
+			}
+			prev.onclick = function(){
+				n--;
+				if(n < 0){
+					n = arr.length-1;
+				}
+				ems[prevIndex].className = '';
+				ems[n].className = 'check';
+				prevIndex = n;
+				imgs[1].src = arr[n];
+				list.style.left = '-420px';
+				imgs[0].src = imgs[1].src;
+				mTween(list,"left",0,200)
+			}
+			for(var i=0;i<ems.length;i++){
+				ems[i].index = i;
+				ems[i].onmouseover = function(){
+					clearInterval(timer)
+					n = this.index;
+					ems[prevIndex].className = '';
+					ems[n].className = 'check';
+					prevIndex = n;
+					imgs[1].src = arr[n];
+					mTween(list,"left",-420,200,"linear",function(){
+						list.style.left = '0px';
+						imgs[0].src = imgs[1].src;
+					})
+				}
+//				ems[i].onmouseout = function(){
+//					autoPlay()
+//				}
+			}
+		</script>
+	</body>
+</html>

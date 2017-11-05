@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.wrap{
+				width: 1000px;
+				height: 475px;
+				background: url(images/bg.png);
+				margin: auto;
+				padding-top: 225px;
+			}
+			.box{
+				width: 690px;
+				height: 414px;
+				border: 6px solid #e4d4f5;
+				margin: auto;
+				background: rgba(0,0,0,0.6) url(images/logo.png) no-repeat 142px 29px;
+				position: relative;
+			}
+			.score,.pointsAgainst{
+				width: 80px;
+				height: 80px;
+				border: 1px solid #988b9d;
+				border-radius: 40px;
+				position: absolute;
+				left: 14px;
+				color: #FFFFFF;
+				font: 16px/108px "微软雅黑";
+				text-align: center;
+			}
+			.score{
+				top: 14px;
+				background: #78258c;
+			}
+			.pointsAgainst{
+				top: 114px;
+				background: #595a9f;
+			}
+			.add,.del{
+				position: absolute;
+				top: 22px;
+				left: 26px;
+				color: #FFFFFF;
+				font-size: 16px;
+				line-height: 1;
+			}
+			.btn{
+				width: 155px;
+				height: 47px;
+				background: url(images/btn.png);
+				position: absolute;
+				bottom: 25px;
+				left: 261px;
+				opacity: 1;
+			}
+			.photoBox{
+				width: 75px;
+				height: 65px;
+				position: absolute;
+				left: 0;
+				top: 0px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="photoBox"></div>
+				<div class="score"><span class="add">0分</span>得分</div>
+				<div class="pointsAgainst"><span class="del">0分</span>失分</div>
+				<b class="btn"></b>
+			</div>
+		</div>
+		<script src="utils.js"></script>
+		<script>
+			var btn = $('.btn')[0];
+			var box = $('.box')[0];
+			var score = $('.score')[0];
+			var add = $('.add')[0];
+			var del = $('.del')[0];
+			var pointsAgainst = $('.pointsAgainst')[0];
+			var photoBox = $('.photoBox')[0];
+			var n1 = 0;//得分的值；
+			var m = 0;
+			var jiasu = 0;
+			
+			var t2 = null;
+			btn.onclick = function(){
+				mTween(score,{
+					left: -100
+				},500);
+				mTween(pointsAgainst,{
+					left: -100
+				},500)
+				mTween(btn,{
+					bottom: -25,
+					opacity: 0
+				},500)
+				t2 = setInterval(imgGo,3000)
+			}
+			photoBox.onmousedown = function(){
+				clearInterval(photoBox.timer)
+				shake(photoBox,'left',20,function(){
+					photoBox.style.display = 'none';
+					photoBox.style.top = 0;
+					n1++;
+					add.innerHTML = n1+'分';
+				})
+				
+			}
+			
+			
+			function imgGo(){
+				jiasu += 100
+				if(m > 9){
+					alert('GAMEOVER');
+					clearInterval(t2)
+					return;
+				}
+				var num = Math.round(Math.random()*(6-1) + 1);
+				photoBox.innerHTML = `<img src="images/${num}.png"/>`
+				
+				var n = Math.round(Math.random()*625);//0-625
+				photoBox.style.display = 'block';
+				photoBox.style.left = n+'px';
+				mTween(photoBox,{
+					top: 370
+				},2000-jiasu,'linear',function(){
+					shake(box,'top',20,function(){
+						m++;
+						del.innerHTML = m+'分';
+					})
+					photoBox.style.top = 0;
+					photoBox.style.display = 'none';
+				})
+			}
+		</script>
+	</body>
+</html>

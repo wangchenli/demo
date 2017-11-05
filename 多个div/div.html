@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="utils.js"></script>
+		<script>
+			var str = '';
+			for(var i=0;i<20;i++){
+				str += '<div style="width:50px;height:50px;background:pink;position:absolute;top:0px;left:'+i*60+'px;"></div>'
+			}
+			document.body.innerHTML = str;
+			var divs = $("div");
+			var timer = null;
+			var n = 0;
+			var state = false;//点击第一次；
+			
+			setInterval(function(){
+				
+				clearInterval(timer);
+				if(state == false){
+					timer = setInterval(function(){
+						
+						mTween(divs[n],"top",500,200);
+						n++;
+						if(n == 20){
+							clearInterval(timer);
+							n = 0;
+							state = true;
+						}
+					},100)
+					
+				}else{
+					timer = setInterval(function(){
+						mTween(divs[n],"top",0,200);
+						n++;
+						if(n == 20){
+							clearInterval(timer);
+							n = 0;
+							state = false;
+						}
+					},100)
+					
+				}
+			},1000)
+			
+		</script>
+	</body>
+</html>

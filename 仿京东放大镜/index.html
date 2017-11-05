@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.wrap{
+				width: 900px;
+				height: 500px;
+				background: url(img/wrap.png) no-repeat;
+				margin: 50px 250px;
+				position: relative;
+			}
+			.box{
+				width: 337px;
+				height: 189px;
+				position: absolute;
+				top: 155px;
+				left: 148px;
+			}
+			.box img{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.mask{
+				width: 91px;
+				height: 91px;
+				background: #FFFFFF;
+				border-radius: 50%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0.5;
+				display: none;
+			}
+			.rBox{
+				width: 182px;
+				height: 182px;
+				border-radius: 50%;
+				overflow: hidden;
+				position: absolute;
+				top: 159px;
+				right: 131px;
+			}
+			.rBox img{
+				width: 674px;
+				height: 378px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<img src="img/pic.png" />
+				<div class="mask"></div>
+			</div>
+			<div class="rBox">
+				<img src="img/pic.png" />
+			</div>
+		</div>
+		<script src="utils.js"></script>
+		<script>
+			var box = $('.box')[0];
+			var mask = $('.mask')[0];
+			var rBox = $('.rBox')[0];
+			var img1 = $('.box img')[0];
+			var img2 = $('.rBox img')[0];
+			
+			
+			var dowX = 0, dowY = 0;
+			box.onmousemove = function(ev){
+				mask.style.display = 'block';
+				mask.style.left = ev.clientX - box.getBoundingClientRect().left - mask.clientWidth/2 + 'px';
+				mask.style.top = ev.clientY - box.getBoundingClientRect().top - mask.clientHeight/2 + 'px';
+				dowX = ev.clientX - mask.offsetLeft ;
+				dowY = ev.clientY - mask.offsetTop;
+				var maxX = mask.parentNode.clientWidth - mask.clientWidth;
+				var maxY = mask.parentNode.clientHeight - mask.clientHeight;
+				
+				var l = ev.clientX	- dowX;
+				var t = ev.clientY	- dowY;
+			
+
+				if(l < 0) {
+					l = 0;
+				}
+				if(t < 0){
+					t = 0;
+				}
+
+				if(l >= maxX){
+					l = maxX;
+				}
+				if(t >= maxY){
+					t = maxY;
+				}
+				
+				mask.style.left = l +'px';
+				mask.style.top = t +'px';
+				
+				var rightMax1 = img2.clientWidth - rBox.clientWidth;
+				var rightMax2 = img2.clientHeight - rBox.clientHeight;
+				img2.style.left = -(l/maxX*rightMax1) + 'px';
+				img2.style.top = -(t/maxY*rightMax2) + 'px';				
+			}
+			box.onmouseout = function(ev){
+				mask.style.display = 'none';
+			}
+		</script>
+	</body>
+</html>

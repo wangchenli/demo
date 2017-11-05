@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 1920px;
+				height: 1080px;
+				position: relative;
+			}
+			#box div{
+				width: 384px;
+				height: 216px;
+				position: absolute;
+				background: #000 url(images/timg.jpg) no-repeat;
+				transition: 1s;
+				transform: scale(1);
+				opacity: 0.3;
+			}
+			#box div:hover{
+				transform: scale(1.2);
+				z-index: 999;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<!--<div id="div"></div>-->
+		</div>
+		<script>
+			var box = document.getElementById('box');
+			var aDiv = box.getElementsByTagName('div');
+			var n = -1;
+			for(var i=0;i<25;i++){
+				if(i%5 == 0) n++
+				box.innerHTML += '<div style="left:'+(i%5)*384+'px;top:'+n*216+'px;"></div>'
+				
+				aDiv[i].style.backgroundPosition = '-'+((i%5)*384)+'px -'+n*216+'px';
+				
+			}
+			for(var i=0;i<25;i++){
+				aDiv[i].onmouseover = function(){
+					this.style.opacity = '1';
+				}
+			
+			}
+		</script>
+	</body>
+</html>
