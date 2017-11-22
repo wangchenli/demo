@@ -1,0 +1,126 @@
+body{
+	background: url(img/1.jpg);
+	color: #FFFFFF;
+}
+.wrap{
+	width: 361px;
+	height: 737px;
+	background: #000000;
+	opacity: 0.8;
+	border: 1px solid #555554;
+	margin: 20px auto;
+}
+.top{
+	height: 112px;
+	border-bottom: 1px solid #555554;
+	padding-left: 24px;
+}
+.date_time{
+	padding-top: 27px;
+	font-size: 34px;
+}
+.cur-month{
+	padding-top: 15px;
+	font-size: 14px;
+	color: #429ce3;
+}
+.date-dates{
+	height: 345px;
+	border-bottom: 1px solid #555554;
+	padding: 0 12px;
+}
+.set-month{
+	height: 53px;
+}
+.set-month span{
+	padding-top: 20px;
+	font: 14px "微软雅黑";
+	text-indent: 12px;
+}
+.prev,.next{
+	width: 48px;
+	height: 53px;
+}
+.prev{
+	background: url(img/prev.png) no-repeat center 21px;
+}
+.next{
+	background: url(img/next.png) no-repeat center 21px;
+}
+.date-days span{
+	float: left;
+	width: 48px;
+	height: 26px;
+	font: 12px/26px "微软雅黑";
+	text-align: center;
+}
+/*.date-nums,.date-days{
+	display: none;
+}*/
+.date-nums span{
+	float: left;
+	width: 46px;
+	height: 40px;
+	margin: 1px;
+	border: 1px solid transparent;
+	box-sizing: border-box;
+	font: 12px/40px "微软雅黑";
+	text-align: center;
+}
+.today{
+	height: 31px;
+	padding-top: 19px;
+	text-indent: 24px;
+}
+.add{
+	width: 60px;
+	height: 50px;
+	background: url(img/add.png) no-repeat 21px 18px;
+}
+.rili{
+	width: 72px;
+	height: 24px;
+	background: url(img/rili.png) no-repeat 25px 0;
+}
+.plan{
+	margin-bottom: 24px;
+}
+.text{
+	font: 14px/22px "微软雅黑";
+}
+.start{
+	width: 216px;
+	height: 32px;
+	background: #0078d7;
+	margin-left: 72px;
+	margin-bottom: 122px;
+	color: #FFFFFF;
+	font: 14px/32px "微软雅黑";
+}
+.hide{
+	font: 14px "微软雅黑";
+	color: #0078d7;
+}
+.hide_btn{
+	width: 25px;
+	height: 14px;
+	background: url(img/hide.png) no-repeat center 5px;
+	margin-right: 17px;
+}
+.hidden_date span,.hidden_month span{
+	float: left;
+	width: 82px;
+	height: 71px;
+	font: 12px/71px "微软雅黑";
+	text-align: center;
+}
+.hidden_date,.hidden_month{
+	display: none;
+}
+.date-nums .light{
+	background: url(img/back.png);
+}
+.blue{
+	background: #0a6aba;
+}
+
