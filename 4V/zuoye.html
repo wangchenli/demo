@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 500px;
+				height: 545px;
+				background: url(images/bg.png);
+				padding-top: 55px;
+				margin: auto;
+			}
+			#s_box{
+				width: 290px;
+				height: 420px;
+				padding-top: 70px;
+				background: url(images/bg1.png);
+				margin: auto;
+				position: relative;
+			}
+			#btn{
+				width: 113px;
+				height: 35px;
+				border: 1px solid #9bd2fb;
+				line-height: 35px;
+				text-align: center;
+				color: #5eb7fa;
+				background: #fff;
+				position: absolute;
+				bottom: 30px;
+				left: 87px;
+				
+			}
+			#box_b{
+				width: 250px;
+				height: 250px;
+				position: relative;
+				margin: auto;
+				background: pink;
+			}
+			#box_b div{
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				color: #5eb7fa;
+				background: #ffffff;
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="s_box">
+				<input id="btn" type="button" value="生成" />
+				<div id="box_b">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+					<div>5</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var btn = document.getElementById('btn');
+			var divs = document.querySelectorAll('#box_b div');
+			var n = 0; 
+			var len = divs.length;
+			btn.onclick = function(){
+				if(n%4 == 0){
+					for(var i=0;i<len;i++){
+						divs[i].style.opacity = 1;
+						if(i<2){
+							divs[i].style.top = (2-i)*50+100+'px';
+						}else{
+							divs[i].style.top = (i-2)*50+100+'px';
+						}
+						divs[i].style.left = i*50+'px';
+					}
+				}else if(n%4 == 1){
+					for(var i=0;i<len;i++){
+						divs[i].style.opacity = 1;
+						if(i<2){
+							divs[i].style.left = (2-i)*50+100+'px';
+						}else{
+							divs[i].style.left = (i-2)*50+100+'px';
+						}
+						divs[i].style.top = i*50+'px';
+					}
+				}else if(n%4 == 2){
+					for(var i=0;i<len;i++){
+						divs[i].style.opacity = 1;
+						if(i<2){
+							divs[i].style.top = (i-2)*50+100+'px';
+						}else{
+							divs[i].style.top = (2-i)*50+100+'px';
+						}
+						divs[i].style.left = i*50+'px';
+					}
+				}else if(n%4 ==3){
+					for(var i=0;i<len;i++){
+						divs[i].style.opacity = 1;
+						if(i<2){
+							divs[i].style.left = (i-2)*50+100+'px';
+						}else{
+							divs[i].style.left = (2-i)*50+100+'px';
+						}
+						divs[i].style.top = i*50+'px';
+					}
+				}
+				n++;
+			}
+		
+		</script>
+			
+	</body>
+</html>
